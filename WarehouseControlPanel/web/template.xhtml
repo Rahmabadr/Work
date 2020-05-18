@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Панель управления Складом</ui:insert></title>
+        <h:outputStylesheet library="css" name="/jsfcrud.css"/>    
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    </h:head>
+
+    <h:body>
+        <div class="container">
+            <header class="row">
+                <div class="col col-md-11">    
+                    <h1>
+                        Управление ресурсами: 
+                        <a href = "/warehouse/faces/adminindex.xhtml" class="text-info"><strong>СкладЛог</strong></a>
+                    </h1>
+                </div>
+                <div class="col col-md-1">
+                    <h2>
+                        
+                        <h:form styleClass="jsfcrud_list_form">
+                            <h:commandLink action="${authController.exit()}" class="text-info" value="Выйти"/>
+                        </h:form>
+                        <!--<a href = "/warehouse/faces/exit.xhtml" class="text-info"><strong>Exit</strong></a>-->
+                    </h2>
+                </div>
+            </header>
+            <div class="row content">          
+                <aside class="col col-md-3">
+                    <h:link outcome="/crud/departments/List" value="Управление отделами"/>
+                    <br />
+                    <h:link outcome="/crud/positions/List" value="Управление должностями"/>
+                    <br />
+                    <h:link outcome="/crud/employees/List" value="Управление работниками"/>
+                    <br />
+                    <h:link outcome="/crud/warehouses/List" value="Управление складами"/>
+                    <br />
+                    <h:link outcome="/crud/sections/List" value="Управление секциями"/>
+                    <br />
+                    <h:link outcome="/crud/cells/List" value="Управление ячейками"/>
+                    <br />
+                    <h:link outcome="/crud/products/List" value="Управление продукцией"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/crud/cellProduct/List" value="Размещение продукции"/>
+                    <br />
+                    <h:link outcome="/crud/requests/List" value="Запросы"/>
+                    <br />
+                    <h:link outcome="/crud/tasks/List" value="Задачи"/> 
+                    <br />
+                    <br />
+                    <h:link outcome="/adminindex" value="Личная информация"/>  
+                    <br />
+                    <br />
+                </aside>
+                <main class="col col-md-9">
+                    <h2>
+                        <ui:insert name="title">Default Title</ui:insert>
+                    </h2>
+                    <p>
+                        <ui:insert name="body">Default Body</ui:insert>
+                    </p>
+                </main>
+            </div>
+            <footer class="row">
+                <div class="col col-md-12">  
+                    <p>
+                        2019-2020 © СкладЛог
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </h:body>
+
+</html>

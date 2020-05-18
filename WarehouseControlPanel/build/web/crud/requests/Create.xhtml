@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateRequestsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateRequestsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{requestsController.selected.id}" title="#{bundle.CreateRequestsTitle_id}" required="true" requiredMessage="#{bundle.CreateRequestsRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateRequestsLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{requestsController.selected.name}" title="#{bundle.CreateRequestsTitle_name}" required="true" requiredMessage="#{bundle.CreateRequestsRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.CreateRequestsLabel_status}" for="status" />
+                    <h:inputText id="status" value="#{requestsController.selected.status}" title="#{bundle.CreateRequestsTitle_status}" required="true" requiredMessage="#{bundle.CreateRequestsRequiredMessage_status}"/>
+                    <h:outputLabel value="#{bundle.CreateRequestsLabel_isShippingRequest}" for="isShippingRequest" />
+                    <h:inputText id="isShippingRequest" value="#{requestsController.selected.isShippingRequest}" title="#{bundle.CreateRequestsTitle_isShippingRequest}" required="true" requiredMessage="#{bundle.CreateRequestsRequiredMessage_isShippingRequest}"/>
+                    <h:outputLabel value="#{bundle.CreateRequestsLabel_dateOfDelivery}" for="dateOfDelivery" />
+                    <h:inputText id="dateOfDelivery" value="#{requestsController.selected.dateOfDelivery}" title="#{bundle.CreateRequestsTitle_dateOfDelivery}" required="true" requiredMessage="#{bundle.CreateRequestsRequiredMessage_dateOfDelivery}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateRequestsLabel_deadlineDate}" for="deadlineDate" />
+                    <h:inputText id="deadlineDate" value="#{requestsController.selected.deadlineDate}" title="#{bundle.CreateRequestsTitle_deadlineDate}" required="true" requiredMessage="#{bundle.CreateRequestsRequiredMessage_deadlineDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateRequestsLabel_departamentFromId}" for="departamentFromId" />
+                    <h:selectOneMenu id="departamentFromId" value="#{requestsController.selected.departamentFromId}" title="#{bundle.CreateRequestsTitle_departamentFromId}" required="true" requiredMessage="#{bundle.CreateRequestsRequiredMessage_departamentFromId}">
+                        <f:selectItems value="#{departmentsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateRequestsLabel_requestManagerId}" for="requestManagerId" />
+                    <h:selectOneMenu id="requestManagerId" value="#{requestsController.selected.requestManagerId}" title="#{bundle.CreateRequestsTitle_requestManagerId}" required="true" requiredMessage="#{bundle.CreateRequestsRequiredMessage_requestManagerId}">
+                        <f:selectItems value="#{employeesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{requestsController.create}" value="#{bundle.CreateRequestsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{requestsController.prepareList}" value="#{bundle.CreateRequestsShowAllLink}" immediate="true"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

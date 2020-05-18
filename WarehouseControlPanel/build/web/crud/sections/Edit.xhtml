@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSectionsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSectionsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{sectionsController.selected.id}" title="#{bundle.EditSectionsTitle_id}" required="true" requiredMessage="#{bundle.EditSectionsRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditSectionsLabel_number}" for="number" />
+                    <h:inputText id="number" value="#{sectionsController.selected.number}" title="#{bundle.EditSectionsTitle_number}" required="true" requiredMessage="#{bundle.EditSectionsRequiredMessage_number}"/>
+                    <h:outputLabel value="#{bundle.EditSectionsLabel_numberOfCells}" for="numberOfCells" />
+                    <h:inputText id="numberOfCells" value="#{sectionsController.selected.numberOfCells}" title="#{bundle.EditSectionsTitle_numberOfCells}" required="true" requiredMessage="#{bundle.EditSectionsRequiredMessage_numberOfCells}"/>
+                   
+                    <h:outputLabel value="#{bundle.EditSectionsLabel_productType}" for="productType" />
+                    <h:selectOneMenu id="productType" value="#{sectionsController.selected.productType}" title="#{bundle.EditSectionsTitle_productType}" required="true" requiredMessage="#{bundle.EditSectionsRequiredMessage_productType}">
+                        <f:selectItems value="#{sectionsController.sectionTypes}"/>
+                    </h:selectOneMenu> 
+                    
+                    <h:outputLabel value="#{bundle.EditSectionsLabel_sectionPriority}" for="sectionPriority" />
+                    <h:selectOneMenu id="sectionPriority" value="#{sectionsController.selected.sectionPriority}" title="#{bundle.EditSectionsTitle_sectionPriority}" required="true" requiredMessage="#{bundle.EditSectionsRequiredMessage_sectionPriority}">
+                        <f:selectItems value="#{sectionsController.sectionPriorities}"/>
+                    </h:selectOneMenu> 
+                    
+                    <h:outputLabel value="#{bundle.EditSectionsLabel_warehouseId}" for="warehouseId" />
+                    <h:selectOneMenu id="warehouseId" value="#{sectionsController.selected.warehouseId}" title="#{bundle.EditSectionsTitle_warehouseId}" required="true" requiredMessage="#{bundle.EditSectionsRequiredMessage_warehouseId}">
+                        <f:selectItems value="#{warehousesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{sectionsController.update}" value="#{bundle.EditSectionsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditSectionsViewLink}"/>
+                <br />
+                <h:commandLink action="#{sectionsController.prepareList}" value="#{bundle.EditSectionsShowAllLink}" immediate="true"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

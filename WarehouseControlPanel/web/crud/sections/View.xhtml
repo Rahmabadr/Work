@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewSectionsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewSectionsLabel_id}"/>
+                    <h:outputText value="#{sectionsController.selected.id}" title="#{bundle.ViewSectionsTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewSectionsLabel_number}"/>
+                    <h:outputText value="#{sectionsController.selected.number}" title="#{bundle.ViewSectionsTitle_number}"/>
+                    <h:outputText value="#{bundle.ViewSectionsLabel_numberOfCells}"/>
+                    <h:outputText value="#{sectionsController.selected.numberOfCells}" title="#{bundle.ViewSectionsTitle_numberOfCells}"/>
+                    <h:outputText value="#{bundle.ViewSectionsLabel_productType}"/>
+                    <h:outputText value="#{sectionsController.selected.productType}" title="#{bundle.ViewSectionsTitle_productType}"/>
+                    <h:outputText value="#{bundle.ViewSectionsLabel_sectionPriority}"/>
+                    <h:outputText value="#{sectionsController.selected.sectionPriority}" title="#{bundle.ViewSectionsTitle_sectionPriority}"/>
+                    <h:outputText value="#{bundle.ViewSectionsLabel_warehouseId}"/>
+                    <h:outputText value="#{sectionsController.selected.warehouseId}" title="#{bundle.ViewSectionsTitle_warehouseId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{sectionsController.destroyAndView}" value="#{bundle.ViewSectionsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewSectionsEditLink}"/>
+                <br />
+                <h:commandLink action="#{sectionsController.prepareCreate}" value="#{bundle.ViewSectionsCreateLink}" />
+                <br />
+                <h:commandLink action="#{sectionsController.prepareList}" value="#{bundle.ViewSectionsShowAllLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

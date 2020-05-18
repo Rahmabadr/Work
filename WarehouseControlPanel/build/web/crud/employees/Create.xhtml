@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEmployeesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateEmployeesLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{employeesController.selected.id}" title="#{bundle.CreateEmployeesTitle_id}" required="true" requiredMessage="#{bundle.CreateEmployeesRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateEmployeesLabel_fullName}" for="fullName" />
+                    <h:inputText id="fullName" value="#{employeesController.selected.fullName}" title="#{bundle.CreateEmployeesTitle_fullName}" required="true" requiredMessage="#{bundle.CreateEmployeesRequiredMessage_fullName}"/>
+                    <h:outputLabel value="#{bundle.CreateEmployeesLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{employeesController.selected.email}" title="#{bundle.CreateEmployeesTitle_email}" required="true" requiredMessage="#{bundle.CreateEmployeesRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.CreateEmployeesLabel_dateOfBirth}" for="dateOfBirth" />
+                    <h:inputText id="dateOfBirth" value="#{employeesController.selected.dateOfBirth}" title="#{bundle.CreateEmployeesTitle_dateOfBirth}" required="true" requiredMessage="#{bundle.CreateEmployeesRequiredMessage_dateOfBirth}">
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateEmployeesLabel_employmentDate}" for="employmentDate" />
+                    <h:inputText id="employmentDate" value="#{employeesController.selected.employmentDate}" title="#{bundle.CreateEmployeesTitle_employmentDate}" required="true" requiredMessage="#{bundle.CreateEmployeesRequiredMessage_employmentDate}">
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateEmployeesLabel_phoneNumber}" for="phoneNumber" />
+                    <h:inputText id="phoneNumber" value="#{employeesController.selected.phoneNumber}" title="#{bundle.CreateEmployeesTitle_phoneNumber}" />
+                    <h:outputLabel value="#{bundle.CreateEmployeesLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{employeesController.selected.password}" title="#{bundle.CreateEmployeesTitle_password}" required="true" requiredMessage="#{bundle.CreateEmployeesRequiredMessage_password}"/>
+                    <h:outputLabel value="#{bundle.CreateEmployeesLabel_postionId}" for="postionId" />
+                    <h:selectOneMenu id="postionId" value="#{employeesController.selected.postionId}" title="#{bundle.CreateEmployeesTitle_postionId}" required="true" requiredMessage="#{bundle.CreateEmployeesRequiredMessage_postionId}">
+                        <f:selectItems value="#{positionsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{employeesController.create}" value="#{bundle.CreateEmployeesSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{employeesController.prepareList}" value="#{bundle.CreateEmployeesShowAllLink}" immediate="true"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

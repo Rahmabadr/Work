@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTasksTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTasksLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{tasksController.selected.id}" title="#{bundle.CreateTasksTitle_id}" required="true" requiredMessage="#{bundle.CreateTasksRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateTasksLabel_status}" for="status" />
+                    <h:inputText id="status" value="#{tasksController.selected.status}" title="#{bundle.CreateTasksTitle_status}" required="true" requiredMessage="#{bundle.CreateTasksRequiredMessage_status}"/>
+                    <h:outputLabel value="#{bundle.CreateTasksLabel_cellFromId}" for="cellFromId" />
+                    <h:selectOneMenu id="cellFromId" value="#{tasksController.selected.cellFromId}" title="#{bundle.CreateTasksTitle_cellFromId}" >
+                        <f:selectItems value="#{cellsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTasksLabel_cellToId}" for="cellToId" />
+                    <h:selectOneMenu id="cellToId" value="#{tasksController.selected.cellToId}" title="#{bundle.CreateTasksTitle_cellToId}" >
+                        <f:selectItems value="#{cellsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTasksLabel_requestOfficerId}" for="requestOfficerId" />
+                    <h:selectOneMenu id="requestOfficerId" value="#{tasksController.selected.requestOfficerId}" title="#{bundle.CreateTasksTitle_requestOfficerId}" required="true" requiredMessage="#{bundle.CreateTasksRequiredMessage_requestOfficerId}">
+                        <f:selectItems value="#{requestOfficersController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTasksLabel_requestProductId}" for="requestProductId" />
+                    <h:selectOneMenu id="requestProductId" value="#{tasksController.selected.requestProductId}" title="#{bundle.CreateTasksTitle_requestProductId}" required="true" requiredMessage="#{bundle.CreateTasksRequiredMessage_requestProductId}">
+                        <f:selectItems value="#{requestProductsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tasksController.create}" value="#{bundle.CreateTasksSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tasksController.prepareList}" value="#{bundle.CreateTasksShowAllLink}" immediate="true"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

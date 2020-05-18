@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCellsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCellsEmpty}" rendered="#{cellsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{cellsController.items.rowCount > 0}">
+                    <h:outputText value="#{cellsController.pagination.pageFirstItem + 1}..#{cellsController.pagination.pageLastItem + 1}/#{cellsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{cellsController.previous}" value="#{bundle.Previous} #{cellsController.pagination.pageSize}" rendered="#{cellsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{cellsController.next}" value="#{bundle.Next} #{cellsController.pagination.pageSize}" rendered="#{cellsController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{cellsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCellsTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCellsTitle_number}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.number}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCellsTitle_area}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.area}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCellsTitle_sectionId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sectionId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{cellsController.prepareView}" value="#{bundle.ListCellsViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{cellsController.prepareEdit}" value="#{bundle.ListCellsEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{cellsController.destroy}" value="#{bundle.ListCellsDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{cellsController.prepareCreate}" value="#{bundle.ListCellsCreateLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

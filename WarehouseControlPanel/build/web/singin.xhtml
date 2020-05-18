@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Аутентификация</title>
+        <h:outputStylesheet library="css" name="/jsfcrud.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    
+    </h:head>
+    <h:body>
+        <h1 style="margin: 10px;">
+            Управление ресурсами: 
+            <a href = "/warehouse/faces/adminindex.xhtml" class="text-info"><strong>СкладЛог</strong></a>
+        </h1>
+        <div class ="auth">
+            <h2>Аутентификация</h2>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Логин" for="login" />
+                    <h:inputText id="login" value="#{authController.login}" title="Логин" required="true" requiredMessage="Логин пуст!"/>
+                    <h:outputLabel value="Пароль" for="password" />
+                    <h:inputSecret id="password" value="#{authController.password}" title="Пароль" required="true" requiredMessage="Пароль пуст!"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{authController.doLogin()}" value="Войти в аккаунт" />
+            </h:form>
+        </div>
+        
+    </h:body>
+</html>
+

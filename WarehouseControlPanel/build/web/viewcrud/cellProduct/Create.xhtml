@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templatemanager.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCellProductTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCellProductLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{cellProductController.selected.id}" title="#{bundle.CreateCellProductTitle_id}" required="true" requiredMessage="#{bundle.CreateCellProductRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateCellProductLabel_quantity}" for="quantity" />
+                    <h:inputText id="quantity" value="#{cellProductController.selected.quantity}" title="#{bundle.CreateCellProductTitle_quantity}" required="true" requiredMessage="#{bundle.CreateCellProductRequiredMessage_quantity}"/>
+                    <h:outputLabel value="#{bundle.CreateCellProductLabel_cellId}" for="cellId" />
+                    <h:selectOneMenu id="cellId" value="#{cellProductController.selected.cellId}" title="#{bundle.CreateCellProductTitle_cellId}" required="true" requiredMessage="#{bundle.CreateCellProductRequiredMessage_cellId}">
+                        <f:selectItems value="#{cellsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateCellProductLabel_productId}" for="productId" />
+                    <h:selectOneMenu id="productId" value="#{cellProductController.selected.productId}" title="#{bundle.CreateCellProductTitle_productId}" required="true" requiredMessage="#{bundle.CreateCellProductRequiredMessage_productId}">
+                        <f:selectItems value="#{productsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{cellProductController.create}" value="#{bundle.CreateCellProductSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{cellProductController.prepareList}" value="#{bundle.CreateCellProductShowAllLink}" immediate="true"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

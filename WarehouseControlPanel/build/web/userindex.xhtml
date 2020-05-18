@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Задания пользователя</ui:insert></title>
+        <h:outputStylesheet library="css" name="/jsfcrud.css"/>    
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    </h:head>
+    <h:body>
+        <div class="container">
+            <header class="row">
+                <div class="col col-md-11">    
+                    <h1>
+                        Управление ресурсами: 
+                        <a href = "/faces/control.xhtml" class="text-info"><strong>СкладЛог</strong></a>
+                    </h1>
+                </div>
+                <div class="col col-md-1">
+                    <h2>
+                        <h:form styleClass="jsfcrud_list_form">
+                            <h:commandLink action="${authController.exit()}" class="text-info" value="Выйти"/>
+                        </h:form>
+                    </h2>
+                </div>
+            </header>
+            <div class="row content"> 
+                
+                <aside class="col col-md-3">
+                    <h2>
+                        Личная информация
+                    </h2>
+                    <br />
+                    <h:form>
+                        
+                        <h:panelGrid columns="2" >
+                            <h:outputLabel value="Фамилия и Имя: " />
+                            <h:outputText id="fullName" value="#{adminInfoController.currentUser.fullName}" />
+
+                            <h:outputLabel value="Email: " />
+                            <h:outputText id="email" value="#{adminInfoController.currentUser.email}" />
+
+                            <h:outputLabel value="Дата Рождения: " />
+                            <h:outputText id="dateOfBirth" value="#{adminInfoController.currentUser.dateOfBirth}" >
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+
+                            <h:outputLabel value="Дата устройства: " />
+                            <h:outputText id="employmentDate" value="#{adminInfoController.currentUser.employmentDate}" >
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+
+                            <h:outputLabel value="Номер телефона: " />
+                            <h:outputText id="phoneNumber" value="#{adminInfoController.currentUser.phoneNumber}" />
+
+                            <h:outputLabel value="Пароль " />
+                            <h:outputText id="password" value="#{adminInfoController.currentUser.password}" />
+
+                            <h:outputLabel value="Должность: " />
+                            <h:outputText id="postionName" value="#{adminInfoController.currentUser.postionId.name}"  />
+
+                            <h:outputLabel value="Тип должности: " />
+                            <h:outputText id="postionType" value="#{adminInfoController.currentUser.postionId.isExecutivePosition}"  />
+
+                        </h:panelGrid>
+                    </h:form> 
+                </aside>
+                
+                <main class="col col-md-9">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                    <h:form>
+                        <h:panelGrid columns="2" rendered="#{employeeTaskController.isHaveTask}">
+                            <h:outputText value="#{bundle.ViewTasksLabel_id}"/>
+                            <h:outputText value="#{employeeTaskController.currentTask.id}" title="#{bundle.ViewTasksTitle_id}"/>
+                            
+                            <h:outputText value="#{bundle.ViewTasksLabel_status}"/>
+                            <h:outputText value="#{employeeTaskController.currentTask.status}" title="#{bundle.ViewTasksTitle_status}"/>
+                           
+                            <h:outputText value="#{bundle.ViewTasksLabel_cellFromId}"/>
+                            <h:outputText value="#{employeeTaskController.currentTask.cellFromId.id}" title="#{bundle.ViewTasksTitle_cellFromId}"/>
+                           
+                            <h:outputText value="#{bundle.ViewTasksLabel_cellToId}"/>
+                            <h:outputText value="#{employeeTaskController.currentTask.cellToId.id}" title="#{bundle.ViewTasksTitle_cellToId}"/>
+                            
+                            <h:outputText value="Название продукта:"/>
+                            <h:outputText value="#{employeeTaskController.currentTask.requestProductId.productId.name}" title="Product Name"/>
+                            
+                            <h:commandLink action="#{employeeTaskController.onTaskComplete}" value="I Did It"/>
+                            <h:outputText value=" " title=" "/>
+                        
+                        </h:panelGrid>
+                        <h:panelGrid columns="2" rendered="#{!employeeTaskController.isHaveTask}">
+                            <h3>Нет задач для вас. Вы можете отдохнуть. Поздравляем!</h3>
+                        </h:panelGrid>
+                    </h:form>
+                </main>
+            </div>
+            <footer class="row">
+                <div class="col col-md-12">  
+                    <p>
+                        2019-2020 © СкладЛог
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </h:body>
+</html>

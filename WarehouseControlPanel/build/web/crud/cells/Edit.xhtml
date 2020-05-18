@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCellsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCellsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{cellsController.selected.id}" title="#{bundle.EditCellsTitle_id}" required="true" requiredMessage="#{bundle.EditCellsRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditCellsLabel_number}" for="number" />
+                    <h:inputText id="number" value="#{cellsController.selected.number}" title="#{bundle.EditCellsTitle_number}" required="true" requiredMessage="#{bundle.EditCellsRequiredMessage_number}"/>
+                    <h:outputLabel value="#{bundle.EditCellsLabel_area}" for="area" />
+                    <h:inputText id="area" value="#{cellsController.selected.area}" title="#{bundle.EditCellsTitle_area}" required="true" requiredMessage="#{bundle.EditCellsRequiredMessage_area}"/>
+                    <h:outputLabel value="#{bundle.EditCellsLabel_sectionId}" for="sectionId" />
+                    <h:selectOneMenu id="sectionId" value="#{cellsController.selected.sectionId}" title="#{bundle.EditCellsTitle_sectionId}" required="true" requiredMessage="#{bundle.EditCellsRequiredMessage_sectionId}">
+                        <f:selectItems value="#{sectionsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{cellsController.update}" value="#{bundle.EditCellsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCellsViewLink}"/>
+                <br />
+                <h:commandLink action="#{cellsController.prepareList}" value="#{bundle.EditCellsShowAllLink}" immediate="true"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

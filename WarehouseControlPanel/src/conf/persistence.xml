@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="WarehouseControlPanelPU" transaction-type="JTA">
+    <jta-data-source>java:app/JavaDB</jta-data-source>
+    <class>entitys.CellProduct</class>
+    <class>entitys.Cells</class>
+    <class>entitys.Departments</class>
+    <class>entitys.Employees</class>
+    <class>entitys.Positions</class>
+    <class>entitys.Products</class>
+    <class>entitys.RequestOfficers</class>
+    <class>entitys.RequestProducts</class>
+    <class>entitys.Requests</class>
+    <class>entitys.Sections</class>
+    <class>entitys.Tasks</class>
+    <class>entitys.Warehouses</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
+</persistence>

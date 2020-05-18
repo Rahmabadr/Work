@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDepartmentsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDepartmentsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{departmentsController.selected.id}" title="#{bundle.EditDepartmentsTitle_id}" required="true" requiredMessage="#{bundle.EditDepartmentsRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditDepartmentsLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{departmentsController.selected.name}" title="#{bundle.EditDepartmentsTitle_name}" required="true" requiredMessage="#{bundle.EditDepartmentsRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.EditDepartmentsLabel_officeAdress}" for="officeAdress" />
+                    <h:inputText id="officeAdress" value="#{departmentsController.selected.officeAdress}" title="#{bundle.EditDepartmentsTitle_officeAdress}" required="true" requiredMessage="#{bundle.EditDepartmentsRequiredMessage_officeAdress}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{departmentsController.update}" value="#{bundle.EditDepartmentsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDepartmentsViewLink}"/>
+                <br />
+                <h:commandLink action="#{departmentsController.prepareList}" value="#{bundle.EditDepartmentsShowAllLink}" immediate="true"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

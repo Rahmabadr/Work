@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDepartmentsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDepartmentsLabel_id}"/>
+                    <h:outputText value="#{departmentsController.selected.id}" title="#{bundle.ViewDepartmentsTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewDepartmentsLabel_name}"/>
+                    <h:outputText value="#{departmentsController.selected.name}" title="#{bundle.ViewDepartmentsTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewDepartmentsLabel_officeAdress}"/>
+                    <h:outputText value="#{departmentsController.selected.officeAdress}" title="#{bundle.ViewDepartmentsTitle_officeAdress}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{departmentsController.destroyAndView}" value="#{bundle.ViewDepartmentsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewDepartmentsEditLink}"/>
+                <br />
+                <h:commandLink action="#{departmentsController.prepareCreate}" value="#{bundle.ViewDepartmentsCreateLink}" />
+                <br />
+                <h:commandLink action="#{departmentsController.prepareList}" value="#{bundle.ViewDepartmentsShowAllLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

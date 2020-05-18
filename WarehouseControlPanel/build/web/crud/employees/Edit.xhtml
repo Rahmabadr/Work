@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEmployeesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEmployeesLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{employeesController.selected.id}" title="#{bundle.EditEmployeesTitle_id}" required="true" requiredMessage="#{bundle.EditEmployeesRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditEmployeesLabel_fullName}" for="fullName" />
+                    <h:inputText id="fullName" value="#{employeesController.selected.fullName}" title="#{bundle.EditEmployeesTitle_fullName}" required="true" requiredMessage="#{bundle.EditEmployeesRequiredMessage_fullName}"/>
+                    <h:outputLabel value="#{bundle.EditEmployeesLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{employeesController.selected.email}" title="#{bundle.EditEmployeesTitle_email}" required="true" requiredMessage="#{bundle.EditEmployeesRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.EditEmployeesLabel_dateOfBirth}" for="dateOfBirth" />
+                    <h:inputText id="dateOfBirth" value="#{employeesController.selected.dateOfBirth}" title="#{bundle.EditEmployeesTitle_dateOfBirth}" required="true" requiredMessage="#{bundle.EditEmployeesRequiredMessage_dateOfBirth}">
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEmployeesLabel_employmentDate}" for="employmentDate" />
+                    <h:inputText id="employmentDate" value="#{employeesController.selected.employmentDate}" title="#{bundle.EditEmployeesTitle_employmentDate}" required="true" requiredMessage="#{bundle.EditEmployeesRequiredMessage_employmentDate}">
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEmployeesLabel_phoneNumber}" for="phoneNumber" />
+                    <h:inputText id="phoneNumber" value="#{employeesController.selected.phoneNumber}" title="#{bundle.EditEmployeesTitle_phoneNumber}" />
+                    <h:outputLabel value="#{bundle.EditEmployeesLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{employeesController.selected.password}" title="#{bundle.EditEmployeesTitle_password}" required="true" requiredMessage="#{bundle.EditEmployeesRequiredMessage_password}"/>
+                    <h:outputLabel value="#{bundle.EditEmployeesLabel_postionId}" for="postionId" />
+                    <h:selectOneMenu id="postionId" value="#{employeesController.selected.postionId}" title="#{bundle.EditEmployeesTitle_postionId}" required="true" requiredMessage="#{bundle.EditEmployeesRequiredMessage_postionId}">
+                        <f:selectItems value="#{positionsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{employeesController.update}" value="#{bundle.EditEmployeesSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEmployeesViewLink}"/>
+                <br />
+                <h:commandLink action="#{employeesController.prepareList}" value="#{bundle.EditEmployeesShowAllLink}" immediate="true"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

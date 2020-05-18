@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templatemanager.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Личные данные"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Фамилия и Имя: " />
+                    <h:outputText id="fullName" value="#{adminInfoController.currentUser.fullName}" />
+                    
+                    <h:outputLabel value="Email: " />
+                    <h:outputText id="email" value="#{adminInfoController.currentUser.email}" />
+                    
+                    <h:outputLabel value="Дата Рождения: " />
+                    <h:outputText id="dateOfBirth" value="#{adminInfoController.currentUser.dateOfBirth}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    
+                    <h:outputLabel value="Дата устройства: " />
+                    <h:outputText id="employmentDate" value="#{adminInfoController.currentUser.employmentDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    
+                    <h:outputLabel value="Номер телефона: " />
+                    <h:outputText id="phoneNumber" value="#{adminInfoController.currentUser.phoneNumber}" />
+                    
+                    <h:outputLabel value="Пароль: " />
+                    <h:outputText id="password" value="#{adminInfoController.currentUser.password}" />
+                    
+                    <h:outputLabel value="Должность: " />
+                    <h:outputText id="postionName" value="#{adminInfoController.currentUser.postionId.name}"  />
+                    
+                    <h:outputLabel value="Тип должности: " />
+                    <h:outputText id="postionType" value="#{adminInfoController.currentUser.postionId.isExecutivePosition}"  />
+                    
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditWarehousesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditWarehousesLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{warehousesController.selected.id}" title="#{bundle.EditWarehousesTitle_id}" required="true" requiredMessage="#{bundle.EditWarehousesRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditWarehousesLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{warehousesController.selected.name}" title="#{bundle.EditWarehousesTitle_name}" required="true" requiredMessage="#{bundle.EditWarehousesRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.EditWarehousesLabel_address}" for="address" />
+                    <h:inputText id="address" value="#{warehousesController.selected.address}" title="#{bundle.EditWarehousesTitle_address}" required="true" requiredMessage="#{bundle.EditWarehousesRequiredMessage_address}"/>
+                    <h:outputLabel value="#{bundle.EditWarehousesLabel_numberOfSections}" for="numberOfSections" />
+                    <h:inputText id="numberOfSections" value="#{warehousesController.selected.numberOfSections}" title="#{bundle.EditWarehousesTitle_numberOfSections}" required="true" requiredMessage="#{bundle.EditWarehousesRequiredMessage_numberOfSections}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{warehousesController.update}" value="#{bundle.EditWarehousesSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditWarehousesViewLink}"/>
+                <br />
+                <h:commandLink action="#{warehousesController.prepareList}" value="#{bundle.EditWarehousesShowAllLink}" immediate="true"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

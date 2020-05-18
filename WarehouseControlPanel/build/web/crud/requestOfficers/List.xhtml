@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRequestOfficersTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListRequestOfficersEmpty}" rendered="#{requestOfficersController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{requestOfficersController.items.rowCount > 0}">
+                    <h:outputText value="#{requestOfficersController.pagination.pageFirstItem + 1}..#{requestOfficersController.pagination.pageLastItem + 1}/#{requestOfficersController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{requestOfficersController.previous}" value="#{bundle.Previous} #{requestOfficersController.pagination.pageSize}" rendered="#{requestOfficersController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{requestOfficersController.next}" value="#{bundle.Next} #{requestOfficersController.pagination.pageSize}" rendered="#{requestOfficersController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{requestOfficersController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRequestOfficersTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRequestOfficersTitle_employerId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.employerId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRequestOfficersTitle_requestId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.requestId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{requestOfficersController.prepareView}" value="#{bundle.ListRequestOfficersViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{requestOfficersController.prepareEdit}" value="#{bundle.ListRequestOfficersEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{requestOfficersController.destroy}" value="#{bundle.ListRequestOfficersDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{requestOfficersController.prepareCreate}" value="#{bundle.ListRequestOfficersCreateLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

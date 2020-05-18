@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Панель управления Складом</ui:insert></title>
+        <h:outputStylesheet library="css" name="/jsfcrud.css"/>    
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<!--        <script src="путь_к_файлу_скрипта/script.js"></script>-->
+        <h:outputScript library="js" name="/scriptjs.js"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    </h:head>
+
+    <h:body>
+        <div class="container">
+            <header class="row">
+                <div class="col col-md-11">    
+                    <h1>
+                        Управление ресурсами: 
+                        <a href = "/warehouse/faces/adminindex.xhtml" class="text-info"><strong>СкладЛог</strong></a>
+                    </h1>
+                </div>
+                <div class="col col-md-1">
+                    <h2>
+                        <h:form styleClass="jsfcrud_list_form">
+                            <h:commandLink action="${authController.exit()}" class="text-info" value="Выйти"/>
+                        </h:form>
+                    </h2>
+                </div>
+            </header>
+            <div class="row content">          
+                <aside class="col col-md-3">
+                    <h:link outcome="/managerindex" value="Новый запрос"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/viewcrud/cellProduct/List" value="Размещение продукции"/>
+                    <br />
+                    <h:link outcome="/viewcrud/requests/List" value="Запросы"/>
+                    <br />
+                    <h:link outcome="/viewcrud/tasks/List" value="Задачи"/> 
+                    <br />
+                    <br />
+                    <h:link outcome="/personal" value="Личная информация"/>  
+                    <br />
+                    <br />
+                </aside>
+                <main class="col col-md-9">
+                    <h2>
+                        <ui:insert name="title">Default Title</ui:insert>
+                    </h2>
+                    <p>
+                        <ui:insert name="body">Default Body</ui:insert>
+                    </p>
+                </main>
+            </div>
+            <footer class="row">
+                <div class="col col-md-12">  
+                    <p>
+                        2019-2020 © СкладЛог
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </h:body>
+
+</html>
